@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interpreter.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interpreter.Model.Domain
 {
-    public class Fluent : IEquatable<Fluent?>
+    public class Fluent : IEquatable<Fluent?>, ICopyable<Fluent>
     {
         public string Name { get; set; }
         public bool State { get; set; }
@@ -15,6 +16,11 @@ namespace Interpreter.Model.Domain
         {
             Name = name;
             State = state;
+        }
+
+        public Fluent Copy()
+        {
+            return new Fluent(Name, State);
         }
 
         public override string ToString()

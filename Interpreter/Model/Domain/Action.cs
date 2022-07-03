@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interpreter.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace Interpreter.Model.Domain
 {
-    public class Action : IEquatable<Action?>
+    public class Action : IEquatable<Action?>, ICopyable<Action>
     {
         public string Name { get; set; }
 
         public Action(string name)
         {
             Name = name;
+        }
+
+        public Action Copy()
+        {
+            return new Action(Name);
         }
 
         public override string ToString()

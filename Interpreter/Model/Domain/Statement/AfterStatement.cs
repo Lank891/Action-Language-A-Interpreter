@@ -1,4 +1,5 @@
 ﻿using Interpreter.Extensions;
+using Interpreter.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Interpreter.Model.Domain.Statement
 {
-    public class AfterStatement : IEquatable<AfterStatement?>
+    public class AfterStatement : IEquatable<AfterStatement?>, ICopyable<AfterStatement>
     {
         public Fluent Fluent { get;}
         
@@ -23,6 +24,14 @@ namespace Interpreter.Model.Domain.Statement
         {
             Fluent = fluent;
             Actions = actions.Select(a => new Action(a)).ToList();
+        }
+
+        public AfterStatement Copy()
+        {
+            List<Action> actions = new();
+            foreach(var action in Actions)
+                actions.Add(action.Copy());
+            return new AfterStatement(Fluent.Copy(), actions);
         }
 
         public override string ToString()

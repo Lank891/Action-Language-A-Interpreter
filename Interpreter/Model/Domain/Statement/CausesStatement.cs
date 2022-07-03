@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interpreter.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Interpreter.Model.Domain.Statement
 {
-    public class CausesStatement : IEquatable<CausesStatement?>
+    public class CausesStatement : IEquatable<CausesStatement?>, ICopyable<CausesStatement>
     {
         public Fluent Fluent { get; }
         public Action Action { get; }
@@ -17,14 +18,28 @@ namespace Interpreter.Model.Domain.Statement
         {
             Fluent = fluent;
             Action = action;
-            Condition = condition.ToImmutableHashSet();
+            HashSet<Fluent> conditionSet = new();
+            foreach (var c in condition)
+                conditionSet.Add(c.Copy());
+            Condition = conditionSet.ToImmutableHashSet();
         }
 
         public CausesStatement(Fluent fluent, Action action, params Fluent[] condition)
         {
             Fluent = fluent;
             Action = action;
-            Condition = condition.ToImmutableHashSet();
+            HashSet<Fluent> conditionSet = new();
+            foreach (var c in condition)
+                conditionSet.Add(c.Copy());
+            Condition = conditionSet.ToImmutableHashSet();
+        }
+
+        public CausesStatement Copy()
+        {
+            List<Fluent> condition = new();
+            foreach (var fluent in Condition)
+                condition.Add(fluent.Copy());
+            return new CausesStatement(Fluent.Copy(), Action.Copy(), condition);
         }
 
         public override string ToString()
