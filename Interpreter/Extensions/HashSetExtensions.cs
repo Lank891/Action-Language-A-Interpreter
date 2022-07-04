@@ -25,5 +25,12 @@ namespace Interpreter.Extensions
                 newSet.Add(item.Copy());
             return newSet.ToImmutableHashSet();
         }
+
+        public static void UpdateElement<T>(this HashSet<T> set, T item, Action<T> modification) where T : class
+        {
+            set.Remove(item);
+            modification(item);
+            set.Add(item);
+        }
     }
 }

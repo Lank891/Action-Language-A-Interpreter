@@ -61,14 +61,10 @@ namespace Interpreter.Logic
 
                 fluentsToChange.Add(causes.Fluent.Copy());
             }
-
+            
             foreach(var fluent in fluentsToChange)
             {
-                Fluent? fluentToChange = state.FirstOrDefault(f => f.Name == fluent.Name);
-                if (fluentToChange != null)
-                    fluentToChange.State = fluent.State;
-                else
-                    state.Add(fluent.Copy());
+                state.UpdateElement(fluent, (f) => { f.State = fluent.State; });
             }
         }
 
@@ -89,7 +85,7 @@ namespace Interpreter.Logic
                 {
                     State state = initialState.Copy();
                     ApplyProgramToState(state, statement.Actions);
-                    if (!state.Any(fluent => fluent == statement.Fluent))
+                    if (!state.Contains(statement.Fluent))
                         statesToRemove.Add(initialState);
                 }
 
