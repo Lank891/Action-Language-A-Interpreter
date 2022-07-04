@@ -76,10 +76,7 @@ namespace InterpreterTests.Logic
             domain.AddCausesStatement(new CausesStatement(new Fluent("fluent", true), new Action("Action")));
             domain.AddCausesStatement(new CausesStatement(new Fluent("fluent", false), new Action("Action")));
 
-
-            ExecutionContext executionContext = new(domain);
-
-            Assert.Throws<InconsistentDomainException>(() => executionContext.GetResultsOfProgramExecution(new List<Action>() { new Action("Action") }));
+            Assert.Throws<InconsistentDomainException>(() => new ExecutionContext(domain));
         }
     }
 }

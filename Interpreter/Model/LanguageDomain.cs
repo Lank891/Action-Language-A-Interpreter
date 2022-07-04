@@ -74,14 +74,14 @@ namespace Interpreter.Model
             return ret[..^1];
         }
 
-        public HashSet<HashSet<Fluent>> GenerateAllInitialStates()
+        public HashSet<State> GenerateAllInitialStates()
         {
             if (Fluents.Count > maximalNumberOfFluentsInDomain)
                 throw new ArgumentOutOfRangeException(nameof(Fluents), $"There are more than {maximalNumberOfFluentsInDomain} in the domain.");
 
             List<string> orderedFluents = Fluents.ToList();
 
-            HashSet<HashSet<Fluent>> initialStates = new();
+            HashSet<State> initialStates = new();
 
             for(uint i = 0; i < (1 << Fluents.Count); i++)
             {
@@ -89,7 +89,7 @@ namespace Interpreter.Model
                 while (combination.Length < Fluents.Count)
                     combination = "0" + combination;
 
-                HashSet<Fluent> initialState = new();
+                State initialState = new();
                 for(int f = 0; f < combination.Length; f++)
                 {
                     initialState.Add(new Fluent(orderedFluents[f], combination[f] == '1'));
