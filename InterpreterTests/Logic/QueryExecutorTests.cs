@@ -24,7 +24,8 @@ namespace InterpreterTests.Logic
                 domain.AddCausesStatement(new CausesStatement(new Fluent("alive", false), new Action("Shoot"), new Fluent("loaded", true)));
 
                 return new ExecutionContext(domain);
-            } }
+            } 
+        }
 
         public static ExecutionContext YaleShootingProblemWithUnknownLoadedExecutionContext
         {
