@@ -1,0 +1,43 @@
+﻿@using Interpreter.Interpreting.UtilityNodes
+@using Interpreter.Interpreting.StatementNodes
+@using Interpreter.Interpreting.QueryNodes
+@namespace Interpreter.Interpreting
+@classname AInterpreter
+
+main<MainNode> = _ languageDomain:domain _ queryBlock:queries { new MainNode(languageDomain, queryBlock) }
+
+domain<LanguageDomainNode>
+	= _ head:statement _ tail:domain { new LanguageDomainNode(head).Concat(tail) }
+	/ _ line:statement { new LanguageDomainNode(line) }
+
+statement<StatementNode>
+	= initiallyStatement 
+	/ aftterStatement
+	/ unconditionalCausesStatement
+	/ conditionalCausesStatement
+
+initiallyStatement<AfterStatementNode> = _ 'initially ' _ f:fluent _ ';' { new AfterStatementNode(f) }
+aftterStatement<AfterStatementNode> = _ f:fluent _ 'after ' _ al:actionList _ ';' { new AfterStatementNode(f, al) }
+unconditionalCausesStatement<CausesStatementNode> = _ a:action _ 'causes ' _ f:fluent _ ';' { new CausesStatementNode(f, a) }
+conditionalCausesStatement<CausesStatementNode> = _ a:action _ 'causes ' _ f:fluent _ 'if ' cond:fluentList _ ';' { new CausesStatementNode(f, a, cond) }
+
+queries<QueryBlockNode>
+	= _ head:query _ tail:queries { new QueryBlockNode(head).Concat(tail) }
+	/ _ line:query { new QueryBlockNode(line) }
+
+query<QueryNode>
+	= afterQuery
+
+afterQuery<AfterQueryNode> = _ 'is ' _ f:fluent _ 'after ' al:actionList _ '?' { new AfterQueryNode(f, al) }
+
+action<ActionNode> = _ actionName:("" [A-Z][a-zA-Z0-9]*) { new ActionNode(actionName) }
+actionList<ActionListNode> 
+	= _ head:action _ ',' _ tail:actionList { new ActionListNode(head).Concat(tail) }
+	/ _ single:action { new ActionListNode(single) }
+
+fluent<FluentNode> = _ negation:("" "~"?) _ fluentName:("" [a-z][a-zA-Z0-9]*) { new FluentNode(fluentName, negation.Length > 0) }
+fluentList<FluentListNode>
+	= _ head:fluent _ ',' _ tail:fluentList { new FluentListNode(head).Concat(tail) }
+	/ _ single:fluent { new FluentListNode(single) }
+
+_ = [ \n\t\r]*

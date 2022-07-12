@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Pegasus" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PegGrammar Include="Interpreting/Grammar.peg" />	
+  </ItemGroup>
+
 </Project>
