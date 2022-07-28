@@ -1,4 +1,4 @@
-﻿using Interpreter.Interpreting.StatementNodes;
+﻿using Interpreter.Parsing.StatementNodes;
 using Interpreter.Model;
 using Interpreter.Model.Domain;
 using Interpreter.Model.Domain.Statement;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interpreter.Interpreting
+namespace Interpreter.Parsing
 {
     public class LanguageDomainNode
     {

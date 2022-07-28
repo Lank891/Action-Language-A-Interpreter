@@ -1,5 +1,5 @@
-﻿using Interpreter.Interpreting.QueryNodes;
-using Interpreter.Interpreting.StatementNodes;
+﻿using Interpreter.Parsing.QueryNodes;
+using Interpreter.Parsing.StatementNodes;
 using Interpreter.Model.Query;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interpreter.Interpreting
+namespace Interpreter.Parsing
 {
     public class QueryBlockNode
     {

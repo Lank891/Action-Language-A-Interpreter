@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PegGrammar Include="Interpreting/Grammar.peg" />	
+	  <PegGrammar Include="Parsing\Grammar.peg" />	
   </ItemGroup>
 
 </Project>

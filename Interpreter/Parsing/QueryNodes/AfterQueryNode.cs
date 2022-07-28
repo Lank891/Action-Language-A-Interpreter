@@ -1,4 +1,4 @@
-﻿using Interpreter.Interpreting.UtilityNodes;
+﻿using Interpreter.Parsing.UtilityNodes;
 using Interpreter.Model.Query;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interpreter.Interpreting.QueryNodes
+namespace Interpreter.Parsing.QueryNodes
 {
     public class AfterQueryNode : QueryNode
     {

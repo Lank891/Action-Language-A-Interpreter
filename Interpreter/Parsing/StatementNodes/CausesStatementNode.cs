@@ -1,15 +1,15 @@
-﻿using Interpreter.Interpreting.StatementNodes;
+﻿using Interpreter.Parsing.StatementNodes;
 using Interpreter.Model;
 using Interpreter.Model.Domain;
 using Interpreter.Model.Domain.Statement;
-using Interpreter.Interpreting.UtilityNodes;
+using Interpreter.Parsing.UtilityNodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interpreter.Interpreting.StatementNodes
+namespace Interpreter.Parsing.StatementNodes
 {
     public class CausesStatementNode : StatementNode
     {

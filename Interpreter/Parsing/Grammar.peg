@@ -1,7 +1,7 @@
-﻿@using Interpreter.Interpreting.UtilityNodes
-@using Interpreter.Interpreting.StatementNodes
-@using Interpreter.Interpreting.QueryNodes
-@namespace Interpreter.Interpreting
+﻿@using Interpreter.Parsing.UtilityNodes
+@using Interpreter.Parsing.StatementNodes
+@using Interpreter.Parsing.QueryNodes
+@namespace Interpreter.Parsing
 @classname AInterpreter
 
 main<MainNode> = _ languageDomain:domain _ queryBlock:queries { new MainNode(languageDomain, queryBlock) }

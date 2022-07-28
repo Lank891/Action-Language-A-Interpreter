@@ -8,7 +8,7 @@ using Interpreter.Model;
 using Interpreter.Model.Query;
 using ExecutionContext = Interpreter.Logic.ExecutionContext;
 
-namespace Interpreter.Interpreting
+namespace Interpreter.Parsing
 {
     public class MainNode
     {

@@ -1,4 +1,4 @@
-﻿using Interpreter.Interpreting.StatementNodes;
+﻿using Interpreter.Parsing.StatementNodes;
 using Interpreter.Model;
 using Interpreter.Model.Domain;
 using Interpreter.Model.Domain.Statement;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Action = Interpreter.Model.Domain.Action;
 
-namespace Interpreter.Interpreting.UtilityNodes
+namespace Interpreter.Parsing.UtilityNodes
 {
     public class ActionListNode
     {
