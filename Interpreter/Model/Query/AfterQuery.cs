@@ -1,4 +1,5 @@
 ﻿using Interpreter.Extensions;
+using Interpreter.Logic;
 using Interpreter.Model.Domain;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using Action = Interpreter.Model.Domain.Action;
 
 namespace Interpreter.Model.Query
 {
-    public class AfterQuery : IEquatable<AfterQuery?>
+    public class AfterQuery :Query, IEquatable<AfterQuery?>
     {
         public Fluent Fluent { get; }
 
@@ -25,6 +26,11 @@ namespace Interpreter.Model.Query
         {
             Fluent = fluent;
             Actions = actions.Select(a => new Action(a)).ToList();
+        }
+
+        public override bool Execute(QueryExecutor queryExecutor)
+        {
+            return queryExecutor.ExecuteAfterQuery(this);
         }
 
         public override string ToString()

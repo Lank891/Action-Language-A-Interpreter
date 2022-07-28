@@ -16,11 +16,11 @@ namespace Interpreter.Logic
             ExecutionContext = executionContext;
         }
 
-        public bool ExecuteQuery(AfterQuery query)
+        public bool ExecuteAfterQuery(AfterQuery query)
         {
             IEnumerable<(Model.State initial, Model.State final)> executionResults = ExecutionContext.GetResultsOfProgramExecution(query.Actions);
 
-            if (executionResults.Count() == 0)
+            if (!executionResults.Any())
                 return true;
 
             bool result = true;
