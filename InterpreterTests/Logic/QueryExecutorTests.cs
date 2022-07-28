@@ -73,7 +73,7 @@ namespace InterpreterTests.Logic
         {
             QueryExecutor queryExecutor = new(context);
 
-            bool result = queryExecutor.ExecuteQuery(query);
+            bool result = queryExecutor.ExecuteAfterQuery(query);
 
             Assert.Equal(expectedResult, result);
         }
