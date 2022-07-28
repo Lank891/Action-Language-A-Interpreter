@@ -1,4 +1,5 @@
 ﻿using Interpreter.Interpreting.UtilityNodes;
+using Interpreter.Model.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ namespace Interpreter.Interpreting.QueryNodes
         {
             Fluent = fluent;
             Actions = actions;
+        }
+
+        public override Query BuildQuery()
+        {
+            return new AfterQuery(Fluent.BuildFluent(), Actions.BuildActionList());
         }
     }
 }

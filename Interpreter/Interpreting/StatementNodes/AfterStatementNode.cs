@@ -1,4 +1,8 @@
-﻿using Interpreter.Interpreting.UtilityNodes;
+﻿using Interpreter.Interpreting.StatementNodes;
+using Interpreter.Model;
+using Interpreter.Model.Domain;
+using Interpreter.Model.Domain.Statement;
+using Interpreter.Interpreting.UtilityNodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +26,11 @@ namespace Interpreter.Interpreting.StatementNodes
         {
             Fluent = fluent;
             Actions = actions;
+        }
+
+        public AfterStatement BuildAfterStatement()
+        {
+            return new AfterStatement(Fluent.BuildFluent(), Actions.BuildActionList());
         }
     }
 }

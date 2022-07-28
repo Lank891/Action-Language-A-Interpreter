@@ -1,5 +1,6 @@
 ﻿using Interpreter.Interpreting.QueryNodes;
 using Interpreter.Interpreting.StatementNodes;
+using Interpreter.Model.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace Interpreter.Interpreting
         {
             Queries.AddRange(tail.Queries);
             return this;
+        }
+        
+        public IEnumerable<Query> BuildQueryList()
+        {
+            return Queries.Select(x => x.BuildQuery());
         }
     }
 }

@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Interpreter.Interpreting.StatementNodes;
+using Interpreter.Model;
+using Interpreter.Model.Domain;
+using Interpreter.Model.Domain.Statement;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +20,11 @@ namespace Interpreter.Interpreting.UtilityNodes
         {
             Name = name;
             State = !negated;
+        }
+
+        public Fluent BuildFluent()
+        {
+            return new Fluent(Name, State);
         }
     }
 }

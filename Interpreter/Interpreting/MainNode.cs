@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
+using Interpreter.Logic;
+using Interpreter.Model;
+using Interpreter.Model.Query;
+using ExecutionContext = Interpreter.Logic.ExecutionContext;
 
 namespace Interpreter.Interpreting
 {
@@ -15,6 +19,16 @@ namespace Interpreter.Interpreting
         {
             LanguageDomain = languageDomain;
             QueryBlock = queryBlock;
+        }
+
+        public LanguageDomain GetLanguageDomain()
+        {
+            return LanguageDomain.BuildLanguageDomain();
+        }
+
+        public IEnumerable<Query> GetQueries()
+        {
+            return QueryBlock.BuildQueryList();
         }
     }
 }

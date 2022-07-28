@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Interpreter.Interpreting.StatementNodes;
+using Interpreter.Model;
+using Interpreter.Model.Domain;
+using Interpreter.Model.Domain.Statement;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +29,11 @@ namespace Interpreter.Interpreting.UtilityNodes
         {
             Fluents.AddRange(fluentList.Fluents);
             return this;
+        }
+
+        public IEnumerable<Fluent> BuildFluentList()
+        {
+            return Fluents.Select(fluent => fluent.BuildFluent());
         }
     }
 }
