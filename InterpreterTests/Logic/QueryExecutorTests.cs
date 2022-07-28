@@ -69,7 +69,7 @@ namespace InterpreterTests.Logic
 
         [Theory]
         [MemberData(nameof(AfterQueryData))]
-        public void ExecuteQuery_Should_ReturnCorrectResult_When_AfterQueryApplied(ExecutionContext context, AfterQuery query, bool expectedResult)
+        public void ExecuteAfterQuery_Should_ReturnCorrectResult_When_AfterQueryApplied(ExecutionContext context, AfterQuery query, bool expectedResult)
         {
             QueryExecutor queryExecutor = new(context);
 
